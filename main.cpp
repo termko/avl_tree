@@ -229,6 +229,17 @@ class BST
         }
     }
 
+    bool Search(node* node, int x)
+    {
+        if (node == NULL)
+            return false;
+        if (node->data < x)
+            return Search(node->left, x);
+        if (node->data > x)
+            return Search(node->right, x);
+        return true;
+    }
+
 public:
     BST()
     {
@@ -264,6 +275,10 @@ public:
         stack.push_back(root);
         BFS(stack);
         std::cout << "\n";
+    }
+    bool search(int x)
+    {
+        return Search(root, x);
     }
 };
 
@@ -302,4 +317,5 @@ int main()
 {
     BST t = read_from_stdin();
     t.display();
+    std::cout << t.search(50) << "\n";
 }
